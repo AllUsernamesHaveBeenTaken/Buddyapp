@@ -10,7 +10,7 @@ defmodule BuddyWeb.Schema do
     query do
         @desc "Get list of gigs"
         field :gigs, list_of(:gig) do
-        middleware Middleware.Authorize
+        # middleware Middleware.Authorize
             resolve &Resolvers.Posts.gigs/3
         end
 

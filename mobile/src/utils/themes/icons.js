@@ -1,4 +1,3 @@
-import React from 'react'
 import Entypo from 'react-native-vector-icons/Entypo'
 import { Platform, PixelRatio } from 'react-native';
 
@@ -13,7 +12,8 @@ const icons = {
 
 const iconsMap = {}
 
-const iconsLoaded = new Promise((resolve, reject) => {
+const iconsLoaded = () =>
+ new Promise((resolve) => {
     new Promise.all(
       Object.keys(icons).map(iconName => {
         const Provider = icons[iconName][1] || defaultIconProvider;
