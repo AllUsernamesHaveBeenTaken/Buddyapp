@@ -42,7 +42,8 @@ defmodule Buddy.Mixfile do
       {:absinthe, "~> 1.4"},
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_ecto, "~> 0.1.3"},
-      {:faker, "~> 0.10.0", only: [:dev, :test]}
+      {:faker, "~> 0.10.0", only: [:dev, :test]},
+      {:facebook, "~> 0.18.0"}
     ]
   end
 
