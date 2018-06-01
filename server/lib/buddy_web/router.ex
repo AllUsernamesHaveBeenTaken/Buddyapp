@@ -3,6 +3,7 @@ defmodule BuddyWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug BuddyWeb.Context
   end
 
   scope "/api" do

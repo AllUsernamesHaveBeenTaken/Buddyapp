@@ -2,6 +2,7 @@ defmodule BuddyWeb.Schema do
     use Absinthe.Schema
 
     alias BuddyWeb.Resolvers
+    alias BuddyWeb.Schema.Middleware
 
     import_types BuddyWeb.Schema.PostsTypes
     import_types BuddyWeb.Schema.AccountsTypes
@@ -9,6 +10,7 @@ defmodule BuddyWeb.Schema do
     query do
         @desc "Get list of gigs"
         field :gigs, list_of(:gig) do
+        middleware Middleware.Authorize
             resolve &Resolvers.Posts.gigs/3
         end
 
