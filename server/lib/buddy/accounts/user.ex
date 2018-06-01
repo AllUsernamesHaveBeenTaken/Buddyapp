@@ -17,7 +17,7 @@ defmodule Buddy.Accounts.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:avatar, :facebook_id, :email, :first_name, :last_name])
-    |> validate_required([:avatar, :facebook_id, :email, :first_name, :last_name])
+    |> validate_required([:avatar, :facebook_id, :first_name, :last_name])
     |> unique_constraint(:email)
     |> unique_constraint(:facebook_id)
   end

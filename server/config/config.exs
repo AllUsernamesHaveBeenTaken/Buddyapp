@@ -22,6 +22,12 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
+# Configures Guardian
+config :buddy, BuddyWeb.Auth.Guardian,
+  issuer: "buddy",
+  verify_user: true,
+  secret_key: "SgcCvRBEjohbmU61RNoP8Dewa7yn/Byntlo3zWLh4qWBXTZeDPfHb3+CwxYJQ3WE"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

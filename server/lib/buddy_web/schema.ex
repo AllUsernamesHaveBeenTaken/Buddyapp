@@ -4,6 +4,7 @@ defmodule BuddyWeb.Schema do
     alias BuddyWeb.Resolvers
 
     import_types BuddyWeb.Schema.PostsTypes
+    import_types BuddyWeb.Schema.AccountsTypes
 
     query do
         @desc "Get list of gigs"
@@ -15,6 +16,16 @@ defmodule BuddyWeb.Schema do
         field :gig , :gig do
             arg :id, non_null(:id)
             resolve &Resolvers.Posts.gig/3
+        end
+
+    end
+
+    mutation do
+        @desc "Login as user"
+        field :login, :user_session do
+            arg :token, :string
+            arg :provider, type: :provider
+            resolve &Resolvers.Accounts.login/3
         end
     end
 end
