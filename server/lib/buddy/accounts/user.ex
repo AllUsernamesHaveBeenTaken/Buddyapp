@@ -10,6 +10,7 @@ defmodule Buddy.Accounts.User do
     field :first_name, :string
     field :last_name, :string
 
+    has_many :gigs, Buddy.Posts.Gig
     has_many :like_gigs, Buddy.Reactions.LikeGig
 
     timestamps()

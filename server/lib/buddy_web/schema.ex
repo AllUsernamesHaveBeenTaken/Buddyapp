@@ -37,5 +37,14 @@ defmodule BuddyWeb.Schema do
             middleware Middleware.Authorize
             resolve &Resolvers.Reactions.like_gig/3
         end
+
+        @desc "Create a gig"
+        field :create_gig, :gig do
+            arg :title, :string
+            arg :location, non_null(:string)
+            arg :when, non_null(:string)
+            middleware Middleware.Authorize
+            resolve &Resolvers.Posts.create_gig/3            
+        end
     end
 end

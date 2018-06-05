@@ -10,6 +10,8 @@ defmodule Buddy.Posts.Gig do
     field :title, :string
     field :when, :naive_datetime
 
+    belongs_to :user, Buddy.Accounts.User
+
     has_many :likes, Buddy.Reactions.LikeGig
 
     timestamps()
@@ -18,7 +20,7 @@ defmodule Buddy.Posts.Gig do
   @doc false
   def changeset(gig, attrs) do
     gig
-    |> cast(attrs, [:title, :location, :when, :favorite_count, :is_favorited])
-    |> validate_required([:title, :location, :when])
+    |> cast(attrs, [:title, :location, :when, :user_id])
+    |> validate_required([:title, :location, :when, :user_id])
   end
 end
