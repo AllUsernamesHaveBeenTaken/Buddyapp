@@ -7,4 +7,10 @@ defmodule BuddyWeb.Resolvers.Reactions do
       {:ok, message}
     end
   end 
+
+  def gig_is_liked(%{id: id}, _, %{context: %{current_user: current_user}}) do
+    with {:ok, message} <- Reactions.gig_is_liked(id, current_user.id) do
+      {:ok, message}
+    end
+  end
 end

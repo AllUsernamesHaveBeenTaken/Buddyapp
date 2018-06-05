@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
 import { GigCard } from '../../components'
+import { FeedGigFragment } from "./fragments";
 
 const styles = StyleSheet.create({
   loading: {
@@ -55,12 +56,10 @@ class FeedScreen extends Component {
 const getGigs = gql`
   query {
     gigs {
-      id
-      title
-      location
-      when
+      ...feedGig
     }
   }
+  ${FeedGigFragment}
 `
 
 export default graphql(getGigs)(FeedScreen);

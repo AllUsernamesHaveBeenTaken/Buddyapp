@@ -60,7 +60,9 @@ export default function Description({
   time = '1:00 - 3:00',
   title = 'Zuipen in voor mijn verjaardag',
   location = 'Saga, Deinze',
-  date = new Date('01/01/2018')
+  date = new Date('01/01/2018'),
+  onLikedPress,
+  isFavorited
 }){
   return (
     <View style={styles.root}>
@@ -77,7 +79,10 @@ export default function Description({
         </View>
       </View>
       <View style={styles.heart}>
-        <Heart />  
+        <Heart 
+          onLikedPress={onLikedPress} 
+          isFavorited={isFavorited}
+        />  
       </View>                  
     </View>
   )

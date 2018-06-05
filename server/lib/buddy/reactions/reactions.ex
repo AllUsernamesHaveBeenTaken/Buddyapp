@@ -9,11 +9,7 @@ defmodule Buddy.Reactions do
   alias Buddy.Reactions.LikeGig
 
   def like_gig(gig_id, user_id) do
-    
-    query = from g in LikeGig, 
-            where: g.gig_id == ^gig_id and g.user_id == ^user_id
-    
-    result = Repo.one(query)
+    result = gig_like_exist(gig_id, user_id)
 
     if result == nil do
       create_like_gig(%{gig_id: gig_id, user_id: user_id})
@@ -21,6 +17,16 @@ defmodule Buddy.Reactions do
     else
       delete_like_gig(result)
       {:ok, false}
+    end
+  end
+
+  def gig_is_liked(gig_id, user_id) do
+    result = gig_like_exist(gig_id, user_id)
+
+    if result == nil do
+      {:ok, false}    
+    else
+      {:ok, true}
     end
   end
 
@@ -117,4 +123,12 @@ defmodule Buddy.Reactions do
   def change_like_gig(%LikeGig{} = like_gig) do
     LikeGig.changeset(like_gig, %{})
   end
+
+  defp gig_like_exist(gig_id, user_id) do
+      query = from g in LikeGig, 
+              where: g.gig_id == ^gig_id and g.user_id == ^user_id
+      
+      Repo.one(query)
+  end
+
 end

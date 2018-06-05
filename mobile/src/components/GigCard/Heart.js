@@ -21,11 +21,23 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function Heart(){
+export default function Heart({
+  onLikedPress,
+  isFavorited
+}){
+
+  _isLiked = () => {
+    if (isFavorited) {
+      return <Ionicons name="md-heart" size={25} style={[styles.button, {color: '#F90093'}]} />
+    } else { 
+      return <Ionicons name="md-heart-outline" size={25} style={styles.button}/>
+    }
+  }
+
   return (
     <View style={styles.root} >
-      <Touchable hitSlop={makeHitSlope(20)} feedback="opacity" style={styles.buttonWrapper}>
-        <Ionicons name="md-heart-outline" size={25} style={styles.button}/>
+      <Touchable onPress={onLikedPress} hitSlop={makeHitSlope(20)} feedback="opacity" style={styles.buttonWrapper}>
+        {this._isLiked()}
       </Touchable>
     </View>
   )
