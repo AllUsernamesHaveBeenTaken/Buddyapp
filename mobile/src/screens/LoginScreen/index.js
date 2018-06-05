@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, StatusBar, TextInput } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, TextInput, AsyncStorage, ActivityIndicator } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import Touchable from "@appandflow/touchable";
 import { human, systemWeights } from "react-native-typography";
 import Entypo from "react-native-vector-icons/Entypo";
-import { LoginManager } from "react-native-fbsdk";
+import { LoginManager, AccessToken } from "react-native-fbsdk";
+import gql from 'graphql-tag'
+import { graphql } from "react-apollo";
 
 import { fonts } from "../../utils/themes";
+import { AsyncStorageAuthToken } from "../../utils/constants";
+import { startMainApp } from "../../Nav";
 
 const COLORS_GRADIENT = ['#1B9AAA', '#FFFFFF']
 
@@ -130,14 +134,50 @@ const styles = StyleSheet.create({
 })
 
 class LoginScreen extends Component {
-  state = {  }
+  state = { 
+    loading: false
+   }
 
   _onFacebookLoginPress = async () => {
-    const res = await LoginManager.logInWithReadPermissions(['public_profile'])
+    this.setState({ loading: true })
+    const res = await LoginManager.logInWithReadPermissions(['public_profile', 'email'])
+    
+    if (res.grantedPermissions && !res.isCancelled) {
+      const data = await AccessToken.getCurrentAccessToken();
+
+      if (data) {
+        const serverResponse = await this.props.loginMutation({
+          variables: {
+            provider: 'FACEBOOK',
+            token: data.accessToken
+          }
+        })
+
+        const { token } = serverResponse.data.login
+
+        try {
+          await AsyncStorage.setItem(AsyncStorageAuthToken, token)
+          this.setState({ loading: false })
+          startMainApp();
+        } catch (error) {
+          throw error;
+        }
+
+      }
+    }
   }
 
   render() {
-    return (
+   
+    if (this.state.loading) {
+      return (
+        <View style={styles.root}>
+          <ActivityIndicator size='large' color='#1B9AAA'/>
+        </View>
+      )
+    }
+    
+   return (
       <View style={styles.root}>
         <StatusBar barStyle='light-content'/>
         <LinearGradient colors={COLORS_GRADIENT} style={styles.header}>
@@ -186,4 +226,12 @@ class LoginScreen extends Component {
   }
 }
 
-export default LoginScreen;
+const loginMutation = gql`
+  mutation($provider: Provider, $token: String){
+    login(provider: $provider, token: $token){
+      token
+    }
+  }
+`
+
+export default graphql(loginMutation, { name: 'loginMutation' })(LoginScreen);

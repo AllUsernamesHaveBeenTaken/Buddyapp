@@ -10,6 +10,8 @@ defmodule Buddy.Posts.Gig do
     field :title, :string
     field :when, :naive_datetime
 
+    has_many :likes, Buddy.Reactions.LikeGig
+
     timestamps()
   end
 

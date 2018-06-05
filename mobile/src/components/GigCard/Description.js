@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
   },
   locationIcon: {
     flex: 0.1,
-    color:'#28E6FF',
+    color:'#1B9AAA',
   },
   date: {
     ...human.headlineObject,
-    color: '#28E6FF',    
+    color: '#1B9AAA',    
   },
   heart: {
     flex: 0.2,

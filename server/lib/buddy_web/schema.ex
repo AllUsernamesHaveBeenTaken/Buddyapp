@@ -10,7 +10,7 @@ defmodule BuddyWeb.Schema do
     query do
         @desc "Get list of gigs"
         field :gigs, list_of(:gig) do
-        # middleware Middleware.Authorize
+        middleware Middleware.Authorize
             resolve &Resolvers.Posts.gigs/3
         end
 
@@ -28,6 +28,13 @@ defmodule BuddyWeb.Schema do
             arg :token, :string
             arg :provider, type: :provider
             resolve &Resolvers.Accounts.login/3
+        end
+
+        @desc "Like or dislike a gig"
+        field :like_gig, :boolean do
+            arg :gig_id, non_null(:id)
+            middleware Middleware.Authorize
+            resolve &Resolvers.Reactions.like_gig/3
         end
     end
 end

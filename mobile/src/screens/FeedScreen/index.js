@@ -33,7 +33,7 @@ class FeedScreen extends Component {
     if (this.props.data.loading) {
       return (
         <View style={styles.loading} >
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="large" color='#1B9AAA' />
         </View>
       )
     }

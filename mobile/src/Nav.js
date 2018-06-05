@@ -24,7 +24,7 @@ export function startMainApp() {
             navBarTransparent: true,
         },
         tabsStyle: {
-            tabBarSelectedButtonColor: '#28E6FF',
+            tabBarSelectedButtonColor: '#1B9AAA',
             tabBarButtonColor: '#050505',
             tabBarTranslucent: true,           
         },
