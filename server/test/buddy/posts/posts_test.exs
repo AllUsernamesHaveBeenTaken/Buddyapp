@@ -6,9 +6,9 @@ defmodule Buddy.PostsTest do
   describe "gigs" do
     alias Buddy.Posts.Gig
 
-    @valid_attrs %{favoriteCount: 42, isFavorited: true, location: "some location", title: "some title", when: ~N[2010-04-17 14:00:00.000000]}
-    @update_attrs %{favoriteCount: 43, isFavorited: false, location: "some updated location", title: "some updated title", when: ~N[2011-05-18 15:01:01.000000]}
-    @invalid_attrs %{favoriteCount: nil, isFavorited: nil, location: nil, title: nil, when: nil}
+    @valid_attrs %{favorite_count: 42, is_favorited: true, location: "some location", title: "some title", when: ~N[2010-04-17 14:00:00.000000]}
+    @update_attrs %{favorite_count: 43, is_favorited: false, location: "some updated location", title: "some updated title", when: ~N[2011-05-18 15:01:01.000000]}
+    @invalid_attrs %{favorite_count: nil, is_favorited: nil, location: nil, title: nil, when: nil}
 
     def gig_fixture(attrs \\ %{}) do
       {:ok, gig} =
@@ -31,8 +31,8 @@ defmodule Buddy.PostsTest do
 
     test "create_gig/1 with valid data creates a gig" do
       assert {:ok, %Gig{} = gig} = Posts.create_gig(@valid_attrs)
-      assert gig.favoriteCount == 42
-      assert gig.isFavorited == true
+      assert gig.favorite_count == 42
+      assert gig.is_favorited == true
       assert gig.location == "some location"
       assert gig.title == "some title"
       assert gig.when == ~N[2010-04-17 14:00:00.000000]
@@ -46,8 +46,8 @@ defmodule Buddy.PostsTest do
       gig = gig_fixture()
       assert {:ok, gig} = Posts.update_gig(gig, @update_attrs)
       assert %Gig{} = gig
-      assert gig.favoriteCount == 43
-      assert gig.isFavorited == false
+      assert gig.favorite_count == 43
+      assert gig.is_favorited == false
       assert gig.location == "some updated location"
       assert gig.title == "some updated title"
       assert gig.when == ~N[2011-05-18 15:01:01.000000]

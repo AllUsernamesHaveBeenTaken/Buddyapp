@@ -4,8 +4,8 @@ defmodule Buddy.Posts.Gig do
 
 
   schema "gigs" do
-    field :favoriteCount, :integer
-    field :isFavorited, :boolean, default: false
+    field :favorite_count, :integer
+    field :is_favorited, :boolean, default: false
     field :location, :string
     field :title, :string
     field :when, :naive_datetime
@@ -18,7 +18,7 @@ defmodule Buddy.Posts.Gig do
   @doc false
   def changeset(gig, attrs) do
     gig
-    |> cast(attrs, [:title, :location, :when, :favoriteCount, :isFavorited])
+    |> cast(attrs, [:title, :location, :when, :favorite_count, :is_favorited])
     |> validate_required([:title, :location, :when])
   end
 end

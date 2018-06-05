@@ -6,8 +6,8 @@ defmodule Buddy.Repo.Migrations.CreateGigs do
       add :title, :string
       add :location, :string
       add :when, :naive_datetime
-      add :favoriteCount, :integer
-      add :isFavorited, :boolean, default: false, null: false
+      add :favorite_count, :integer, default: 0, null: false
+      add :is_favorited, :boolean, default: false, null: false
 
       timestamps()
     end

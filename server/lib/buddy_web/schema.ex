@@ -16,6 +16,7 @@ defmodule BuddyWeb.Schema do
 
         @desc "Get a single gig by id"
         field :gig , :gig do
+        middleware Middleware.Authorize        
             arg :id, non_null(:id)
             resolve &Resolvers.Posts.gig/3
         end

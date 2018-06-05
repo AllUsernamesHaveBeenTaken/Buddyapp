@@ -6,8 +6,8 @@ defmodule BuddyWeb.Schema.PostsTypes do
         field :title, non_null(:string)
         field :location, non_null(:string)
         field :when, non_null(:string)
-        field :favoriteCount, :integer
-        field :isFavorited, :boolean
+        field :favorite_count, :integer
+        field :is_favorited, :boolean
 
         field :inserted_at, non_null(:string)
         field :updated_at, non_null(:string)
