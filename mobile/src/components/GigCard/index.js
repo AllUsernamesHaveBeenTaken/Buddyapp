@@ -29,7 +29,7 @@ class GigCard extends Component {
     render() {
         return (
             <View style={styles.root}>
-                <Header />
+                <Header avatar={this.props.data.avatar} username={this.props.data.first_name}/>
                 <Description 
                     title={this.props.data.title}
                     location={this.props.data.location}

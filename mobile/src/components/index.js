@@ -1,3 +1,4 @@
 import GigCard from './GigCard'
+import { AddGigBtn } from "./Buttons";
 
-export { GigCard }
+export { GigCard, AddGigBtn }

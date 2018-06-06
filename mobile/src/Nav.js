@@ -4,6 +4,7 @@ import { registerScreens } from './screens'
 import { iconsMap } from './utils/themes'
 import appInitialized from './utils/appInitialized'
 
+
 registerScreens();
 
 export function startLogin() {

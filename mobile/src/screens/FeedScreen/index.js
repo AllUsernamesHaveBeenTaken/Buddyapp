@@ -3,7 +3,7 @@ import { FlatList, Text, ActivityIndicator, StyleSheet, View, RefreshControl } f
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
-import { GigCard } from '../../components'
+import { GigCard, AddGigBtn } from '../../components'
 import { FeedGigFragment } from "./fragments";
 
 const styles = StyleSheet.create({
@@ -39,16 +39,20 @@ class FeedScreen extends Component {
       )
     }
     return (
-      <FlatList 
-        data={this.props.data.gigs}
-        keyExtractor={this._keyExtractor}
-        renderItem={this._renderItem}
-        refreshControl={
-        <RefreshControl 
-          refreshing={this.state.isRefreshing}
-          onRefresh={this._refreshRequest}/>
-        }
-      />
+      <View>
+        <FlatList 
+          data={this.props.data.gigs}
+          keyExtractor={this._keyExtractor}
+          renderItem={this._renderItem}
+          refreshControl={
+            <RefreshControl 
+              refreshing={this.state.isRefreshing}
+              onRefresh={this._refreshRequest}
+            />
+          }
+        />
+        <AddGigBtn navigator={this.props.navigator}/>
+      </View>
     );
   }
 }
