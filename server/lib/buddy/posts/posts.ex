@@ -18,7 +18,9 @@ defmodule Buddy.Posts do
 
   """
   def list_gigs do
-    Repo.all(Gig)
+    query = from g in Gig,
+          order_by: [desc: :inserted_at]
+    Repo.all(query)
   end
 
   @doc """
