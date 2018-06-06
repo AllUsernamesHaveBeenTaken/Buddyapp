@@ -1,9 +1,13 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, Text, TextInput} from 'react-native';
+import { StyleSheet, View, Text, TextInput, ActivityIndicator} from 'react-native';
 import Touchable from "@appandflow/touchable";
 import { human, systemWeights } from "react-native-typography";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
 
 import { iconsMap } from '../../utils/themes'
+import { createGigMutation } from "../../graphql/mutations";
+import { FeedGigFragment } from "../../screens/FeedScreen/fragments";
 
 const styles = StyleSheet.create({
   root: {
@@ -26,20 +30,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   input: {
-    flex: 1,
-  },
-  inputTimeWrapper: {
-    height: 45,
-    width: '95%',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#1B9AAA60',
-    marginBottom: 10,
-    padding: 10,
-    flexDirection: 'row'
-  },
-  inputTime: { 
     flex: 1,
   },
   inputPlans: {
@@ -79,12 +69,22 @@ const styles = StyleSheet.create({
   cancelBtnText: {
     ...human.footnoteObject,    
   },
+  loadingWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 })
 
 class CreateGigScreen extends PureComponent {
   constructor(props) {
     super(props)
-    this.state = {  }
+    this.state = { 
+      title: '',
+      location: '',
+      when: '',
+      loading: false
+    }
     props.navigator.setOnNavigatorEvent(this._onBackButtonPress.bind(this))
   }
 
@@ -104,6 +104,25 @@ class CreateGigScreen extends PureComponent {
     })
   }
 
+  _onSubmitPress = async () => {
+    this.setState({ loading: true })
+
+    await this.props.onCreateGig({
+      title: this.state.title,
+      location: this.state.location,
+      when: this.state.when,
+    })
+    
+    this.props.navigator.dismissModal({
+      animationType: 'none'
+    })
+    this.setState({ loading: false })
+  }
+
+  _onTitleChange = title => this.setState({title})
+  _onLocationChange = location => this.setState({location})
+  _onWhenChange = when => this.setState({when})
+
   componentWillMount() {
     this.props.navigator.setButtons({
       leftButtons: [
@@ -117,29 +136,50 @@ class CreateGigScreen extends PureComponent {
   }
 
   render() {
+    if (this.state.loading) {
+      return (
+        <View style={styles.loadingWrapper} >
+          <ActivityIndicator size='large'/>
+        </View>
+      )
+    }
     return (
       <View style={styles.root} >
         <View style={styles.inputSection}>
           <View style={[styles.inputWrapper, styles.inputPlans]}>
-            <TextInput multiline undelineColorAndroid='transparent' style={styles.input} placeholder='What are your plans?'/>
+            <TextInput 
+              value={this.state.title}
+              multiline 
+              undelineColorAndroid='transparent' 
+              style={styles.input}
+              placeholder='What are your plans?'
+              onChangeText={this._onTitleChange}
+            />
           </View>
           <View style={styles.inputWrapper}>
-            <TextInput undelineColorAndroid='transparent' style={styles.input} placeholder='Location'/>
+            <TextInput 
+              value={this.state.location} 
+              undelineColorAndroid='transparent' 
+              style={styles.input} 
+              placeholder='Location?'
+              onChangeText={this._onLocationChange}
+            />
           </View>
-          <View style={styles.inputTimeWrapper}>
-            <View style={styles.inputTime}>
-              <TextInput undelineColorAndroid='transparent' style={styles.input} placeholder='From'/>
-            </View>
-            <View style={styles.inputTime}>
-              <TextInput undelineColorAndroid='transparent' style={styles.input} placeholder='To'/>
-            </View>
+          <View style={styles.inputWrapper}>
+            <TextInput 
+              value={this.state.when} 
+              undelineColorAndroid='transparent' 
+              style={styles.input} 
+              placeholder='When?'
+              onChangeText={this._onWhenChange}
+            />
           </View>
         </View>
         <View style={styles.sectionBtn} >
           <Touchable onPress={this._onCancelPress} style={styles.btnCancel} feedback='opacity'>
             <Text style={styles.cancelBtnText} >Cancel</Text>
           </Touchable>
-          <Touchable style={styles.btnSubmit} feedback='opacity'>
+          <Touchable onPress={this._onSubmitPress} style={styles.btnSubmit} feedback='opacity'>
             <Text style={styles.submitBtnText} >Submit</Text>
           </Touchable>
         </View>
@@ -148,4 +188,29 @@ class CreateGigScreen extends PureComponent {
   }
 }
 
-export default CreateGigScreen;
+const getGigs = gql`
+  query {
+    gigs {
+      ...feedGig
+    }
+  }
+  ${FeedGigFragment}
+`
+
+export default graphql(createGigMutation, {
+  props: ({mutate}) => ({
+    onCreateGig: variables =>
+      mutate({
+        variables,
+        update: (store, {data: { createGig }}) => {
+          const query = store.readQuery({ query: getGigs})
+          store.writeData({
+            query: getGigs,
+            data: {
+              gigs: [createGig, ...query.gigs]
+            }
+          })
+        }
+      })
+  })
+})(CreateGigScreen);

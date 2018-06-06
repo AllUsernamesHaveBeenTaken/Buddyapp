@@ -1,3 +1,4 @@
 import likeGigMutation from './likeGigMutation'
+import createGigMutation from './createGigMutation'
 
-export { likeGigMutation }
+export { likeGigMutation, createGigMutation }
