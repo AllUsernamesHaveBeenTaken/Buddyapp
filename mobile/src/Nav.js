@@ -23,6 +23,7 @@ export function startMainApp() {
         appStyle: {
             navBarTextColor: '#050505',
             navBarTransparent: true,
+            navBarButtonColor:'#1B9AAA'
         },
         tabsStyle: {
             tabBarSelectedButtonColor: '#1B9AAA',

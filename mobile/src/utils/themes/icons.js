@@ -6,8 +6,9 @@ const navIconSize = (__DEV__ === false && Platform.OS === 'android') ? PixelRati
 const replaceSuffixPattern = /--(active|big|small|very-big)/g
 
 const icons = {
-    list : [navIconSize, Entypo],
-    globe : [navIconSize, Entypo]
+    list: [navIconSize, Entypo],
+    globe: [navIconSize, Entypo],
+    cross: [navIconSize, Entypo]
 }
 
 const iconsMap = {}
