@@ -12,6 +12,7 @@ defmodule Buddy.Accounts.User do
 
     has_many :gigs, Buddy.Posts.Gig
     has_many :like_gigs, Buddy.Reactions.LikeGig
+    has_many :comments, Buddy.Posts.Comment
 
     timestamps()
   end

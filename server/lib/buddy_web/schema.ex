@@ -21,6 +21,12 @@ defmodule BuddyWeb.Schema do
             resolve &Resolvers.Posts.gig/3
         end
 
+        @desc "Get all comments for a gig"
+        field :comments, non_null(list_of(:comment)) do
+            arg :gig_id, non_null(:id)
+            middleware Middleware.Authorize
+            resolve &Resolvers.Posts.get_comments/3            
+        end
     end
 
     mutation do
@@ -45,6 +51,14 @@ defmodule BuddyWeb.Schema do
             arg :when, non_null(:string)
             middleware Middleware.Authorize
             resolve &Resolvers.Posts.create_gig/3            
+        end
+
+        @desc "Create a comment on a gig"
+        field :create_comment, :comment do
+            arg :gig_id, non_null(:id)
+            arg :text, non_null(:string)
+            middleware Middleware.Authorize
+            resolve &Resolvers.Posts.create_comment/3   
         end
     end
 end
