@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react'
-import { View, Text, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, ScrollView, FlatList } from 'react-native';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+
+import { Comment } from "../../components";
 
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-  }
+  },
 })
 
 const GET_COMMENTS = gql`
@@ -19,6 +21,7 @@ const GET_COMMENTS = gql`
         id 
         avatar
         firstName
+        lastName
       }
     }
   }
@@ -26,6 +29,11 @@ const GET_COMMENTS = gql`
 
 class GigDetailScreen extends PureComponent {
   state = {  }
+
+  _keyExtractor = (item) => item.id
+
+  _renderItem = ({item}) => <Comment {...item} />
+
   render() {
     return (
       <Query query={GET_COMMENTS} variables={{gigId: this.props.gigId}}>
@@ -40,7 +48,10 @@ class GigDetailScreen extends PureComponent {
           }
           return (
             <ScrollView>
-              <Text>{JSON.stringify(data)}</Text>
+              <FlatList data={data.comments}
+              keyExtractor={this._keyExtractor}
+              renderItem={this._renderItem}
+            />
             </ScrollView>
           )
         }}

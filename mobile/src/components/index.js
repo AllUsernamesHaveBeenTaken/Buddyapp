@@ -1,4 +1,5 @@
 import GigCard from './GigCard'
 import { AddGigBtn } from "./Buttons";
+import Comment from "./Comments";
 
-export { GigCard, AddGigBtn }
+export { GigCard, AddGigBtn, Comment }
