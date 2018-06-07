@@ -21,7 +21,7 @@ class FeedScreen extends Component {
 
   _keyExtractor = (item) => item.id
   
-  _renderItem = ({item}) => <GigCard data={item}/>
+  _renderItem = ({item}) => <GigCard navigator={this.props.navigator} data={item}/>
 
   _refreshRequest = async () => {
     this.setState({ isRefreshing: true})

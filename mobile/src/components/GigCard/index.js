@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { graphql } from 'react-apollo'
 import { defaultDataIdFromObject } from "apollo-cache-inmemory";
+import Touchable from "@appandflow/touchable";
 
 import Header from './Header'
 import Description from './Description'
@@ -26,17 +27,29 @@ class GigCard extends Component {
         this.props.onLikeGigMutation()
     }
 
+    _onGoToDetail = () => {
+        this.props.navigator.push({
+            screen: 'buddy.GigDetailScreen',
+            title: 'Comments',
+            passProps: {
+                gigId: this.props.data.id
+            }
+        })
+    }
+
     render() {
         return (
             <View style={styles.root}>
                 <Header avatar={this.props.data.avatar} username={this.props.data.first_name}/>
-                <Description 
-                    title={this.props.data.title}
-                    location={this.props.data.location}
-                    date={this.props.data.when}
-                    onLikedPress={this._onLikedPress}
-                    isFavorited={this.props.data.isFavorited}
-                />
+                <Touchable feedback='highlight' onPress={this._onGoToDetail}>
+                    <Description 
+                        title={this.props.data.title}
+                        location={this.props.data.location}
+                        date={this.props.data.when}
+                        onLikedPress={this._onLikedPress}
+                        isFavorited={this.props.data.isFavorited}
+                    />
+                </Touchable>
             </View>
         );
     }
