@@ -33,7 +33,10 @@ class GigCard extends Component {
             title: 'Comments',
             passProps: {
                 gigId: this.props.data.id
-            }
+            },
+            navigatorStyle: {
+                tabBarHidden: true
+            },
         })
     }
 

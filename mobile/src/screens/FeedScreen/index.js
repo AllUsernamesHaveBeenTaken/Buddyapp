@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList, Text, ActivityIndicator, StyleSheet, View, RefreshControl } from 'react-native';
+import { FlatList, Text, ActivityIndicator, StyleSheet, View, RefreshControl, SafeAreaView } from 'react-native';
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
