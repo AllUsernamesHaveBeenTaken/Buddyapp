@@ -34,14 +34,32 @@ export function startMainApp() {
             {
                 screen: 'buddy.FeedScreen',
                 title: 'Buddy',
-                icon: iconsMap.list
+                icon: iconsMap.list,
+                navigatorButtons: {
+                    rightButtons: [
+                        {
+                            title: 'Noti',
+                            id: 'notifications',
+                            icon: iconsMap.bell
+                        }
+                    ]
+                }
             },
             {
                 screen: 'buddy.ExploreScreen',
                 title: 'Buddy',
-                icon: iconsMap.globe
-            }
-        ]
+                icon: iconsMap.globe,
+                navigatorButtons: {
+                    rightButtons: [
+                        {
+                            title: 'Noti',
+                            id: 'notifications',
+                            icon: iconsMap.bell
+                        }
+                    ]
+                }
+            },
+        ],
     })
 }
 
