@@ -15,8 +15,17 @@ import { FeedGigFragment } from "../../screens/FeedScreen/fragments";
 const styles = StyleSheet.create({
     root: {
         minHeight: 120,
-        backgroundColor: '#DDDBCB',
-        paddingBottom: 2,
+        paddingBottom: 5,
+        paddingTop: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        shadowColor: "#050505",
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        shadowOffset: {
+        height: 0,
+        width: 0
+        }
     }
 })
 

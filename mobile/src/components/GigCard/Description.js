@@ -11,7 +11,9 @@ const styles = StyleSheet.create({
     minHeight: 70,
     backgroundColor: 'white',
     flexDirection: 'row',  
-    paddingBottom: 10     
+    paddingBottom: 10,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,   
   },
   contentRight: {
     flex: 1,
@@ -49,6 +51,8 @@ const styles = StyleSheet.create({
   date: {
     ...human.headlineObject,
     color: '#1B9AAA',    
+    marginLeft: 10
+    
   },
   heart: {
     flex: 0.2,

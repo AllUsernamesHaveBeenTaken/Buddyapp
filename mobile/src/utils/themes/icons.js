@@ -1,5 +1,6 @@
 import Entypo from 'react-native-vector-icons/Entypo'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 import { Platform, PixelRatio } from 'react-native';
 
@@ -11,7 +12,8 @@ const icons = {
     list: [navIconSize, Entypo],
     globe: [navIconSize, Entypo],
     cross: [navIconSize, Entypo],
-    bell: [navIconSize, EvilIcons]
+    bell: [navIconSize, EvilIcons],
+    user: [navIconSize, FontAwesome]
 }
 
 const iconsMap = {}
