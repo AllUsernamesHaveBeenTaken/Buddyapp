@@ -12,6 +12,7 @@ defmodule BuddyWeb.Schema.PostsTypes do
         field :location, non_null(:string)
         field :when, non_null(:string)
         field :favorite_count, :integer
+        field :user, non_null(:user), resolve: assoc(:user)
         field :is_favorited, non_null(:boolean) do
             resolve &Resolvers.Reactions.gig_is_liked/3
         end

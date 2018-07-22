@@ -59,9 +59,13 @@ export default function Header({
             <Text style={styles.username} >{username}</Text>
           </View>
       </View>
-      <Touchable hitSlop={makeHitSlope(20)} feedback="opacity" style={styles.btnWrapper}>
-        <Entypo name="dots-three-horizontal" size={25} style={{color: '#050505'}}/>
-      </Touchable>
+      {
+        /*
+        <Touchable hitSlop={makeHitSlope(20)} feedback="opacity" style={styles.btnWrapper}>
+          <Entypo name="dots-three-horizontal" size={25} style={{color: '#050505'}}/>
+        </Touchable>
+        */
+      }
     </View>
   );
 }

@@ -6,6 +6,11 @@ export const FeedGigFragment = gql`
     title
     location
     when
-    isFavorited
+    isFavorited,
+    user {
+      firstName,
+      lastName,
+      avatar
+    }
   }
 `

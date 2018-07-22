@@ -1,4 +1,4 @@
-import { Navigation } from 'react-native-navigation';
+import { Navigation, ScreenVisibilityListener } from 'react-native-navigation-v1-v2-adapter';
 
 import { registerScreens } from './screens'
 import { iconsMap } from './utils/themes'
@@ -34,14 +34,32 @@ export function startMainApp() {
             {
                 screen: 'buddy.FeedScreen',
                 title: 'Buddy',
-                icon: iconsMap.list
+                icon: iconsMap.list,
+                navigatorButtons: {
+                    rightButtons: [
+                        {
+                            title: 'Noti',
+                            id: 'notifications',
+                            icon: iconsMap.bell
+                        }
+                    ]
+                }
             },
             {
                 screen: 'buddy.ExploreScreen',
                 title: 'Buddy',
-                icon: iconsMap.globe
-            }
-        ]
+                icon: iconsMap.globe,
+                navigatorButtons: {
+                    rightButtons: [
+                        {
+                            title: 'Noti',
+                            id: 'notifications',
+                            icon: iconsMap.bell
+                        }
+                    ]
+                }
+            },
+        ],
     })
 }
 

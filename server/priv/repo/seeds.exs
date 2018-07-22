@@ -4,11 +4,12 @@ alias Buddy.{Posts, Repo, Accounts}
 
 mock_gigs = 9
 mock_users = 5
+mock_comments = 30
 
 # Users
 for idx <- 1..mock_users do
     sex = if (is_odd(idx)), do: "men", else: "women"
-    avatar = "https://randomuser.me/api/portraits#{sex}/#{idx}.jpg"
+    avatar = "https://randomuser.me/api/portraits/#{sex}/#{idx}.jpg"
     %Accounts.User{
         email: Faker.Internet.email,
         avatar: avatar,
@@ -31,5 +32,18 @@ for idx <- 0..mock_gigs do
 
     %Posts.Gig{}
     |> Posts.Gig.changeset(gig)
+    |> Repo.insert!
+end
+
+# Comments
+for idx <- 0..mock_comments do
+    comment = %{
+        text: Faker.Lorem.Shakespeare.En.romeo_and_juliet(),
+        user_id: Enum.random(1..mock_users),
+        gig_id: Enum.random(1..mock_gigs)
+    }
+
+    %Posts.Comment{}
+    |> Posts.Comment.changeset(comment)
     |> Repo.insert!
 end

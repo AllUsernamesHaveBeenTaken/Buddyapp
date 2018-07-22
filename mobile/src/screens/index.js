@@ -1,4 +1,4 @@
-import { Navigation } from 'react-native-navigation';
+import { Navigation, ScreenVisibilityListener } from 'react-native-navigation-v1-v2-adapter';
 
 import FeedScreen from './FeedScreen'
 import ExploreScreen from './ExploreScreen'
