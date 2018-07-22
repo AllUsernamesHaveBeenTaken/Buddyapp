@@ -19,21 +19,14 @@ export function startLogin() {
     })
 }
 
-
-
 export function startMainApp() {
     Navigation.setDefaultOptions({
         topBar: {
             visible: true,
-            searchBar: true,
+            //searchBar: true,
             noBorder: true,
             buttonColor: '#1B9AAA',
-            title: {
-                text: 'Title',
-                fontSize: 20,
-                color: '050505',
-                transparent: true
-              }
+            noBorder: true,
         },
         bottomTabs: {
             visible: true,
@@ -61,7 +54,6 @@ export function startMainApp() {
                 }],
                 options: {
                   bottomTab: {
-                    title: 'Buddy',
                     icon: iconsMap.list,
                     testID: 'FEEDSCREEN_TAB_BAR_BUTTON'
                   },
