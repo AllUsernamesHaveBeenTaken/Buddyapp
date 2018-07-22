@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -18,7 +19,7 @@
 		127B2DF020C29FD000D1B59D /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127B2DEF20C29FD000D1B59D /* FBSDKCoreKit.framework */; };
 		127B2DF220C29FDE00D1B59D /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127B2DF120C29FDE00D1B59D /* FBSDKShareKit.framework */; };
 		127B2DF420C29FF000D1B59D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127B2DF320C29FF000D1B59D /* FBSDKLoginKit.framework */; };
-		12D0F14420BF143F00CC8EC8 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D0F14320BF13F300CC8EC8 /* libReactNativeNavigation.a */; };
+		12EF74FA21046C9E00A9B66B /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EF74F521046BD300A9B66B /* libReactNativeNavigation.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -131,19 +132,26 @@
 			remoteGlobalIDString = 9350E0F11CE3B0920041D815;
 			remoteInfo = RCTFBSDK;
 		};
-		12D0F14220BF13F300CC8EC8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 12D0F13E20BF13F300CC8EC8 /* ReactNativeNavigation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
-			remoteInfo = ReactNativeNavigation;
-		};
 		12D0F17C20BF351E00CC8EC8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B351F07874DC4FA2B75E1622 /* RNVectorIcons.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
+		};
+		12EF74F421046BD300A9B66B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12EF74C721046BD300A9B66B /* ReactNativeNavigation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
+			remoteInfo = ReactNativeNavigation;
+		};
+		12EF74F621046BD300A9B66B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12EF74C721046BD300A9B66B /* ReactNativeNavigation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7B49FEBB1E95090800DEB3EA;
+			remoteInfo = ReactNativeNavigationTests;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -392,7 +400,7 @@
 		127B2DEF20C29FD000D1B59D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		127B2DF120C29FDE00D1B59D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		127B2DF320C29FF000D1B59D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		12D0F13E20BF13F300CC8EC8 /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
+		12EF74C721046BD300A9B66B /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/lib/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = buddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -445,7 +453,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12D0F14420BF143F00CC8EC8 /* libReactNativeNavigation.a in Frameworks */,
+				12EF74FA21046C9E00A9B66B /* libReactNativeNavigation.a in Frameworks */,
 				127B2DEE20C29FB400D1B59D /* Bolts.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -580,14 +588,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		12D0F13F20BF13F300CC8EC8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				12D0F14320BF13F300CC8EC8 /* libReactNativeNavigation.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		12D0F15220BF351C00CC8EC8 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,6 +603,15 @@
 			isa = PBXGroup;
 			children = (
 				12D0F17D20BF351E00CC8EC8 /* libRNVectorIcons.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		12EF74C821046BD300A9B66B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				12EF74F521046BD300A9B66B /* libReactNativeNavigation.a */,
+				12EF74F721046BD300A9B66B /* ReactNativeNavigationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -716,7 +725,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				12D0F13E20BF13F300CC8EC8 /* ReactNativeNavigation.xcodeproj */,
+				12EF74C721046BD300A9B66B /* ReactNativeNavigation.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -950,8 +959,8 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-					ProductGroup = 12D0F13F20BF13F300CC8EC8 /* Products */;
-					ProjectRef = 12D0F13E20BF13F300CC8EC8 /* ReactNativeNavigation.xcodeproj */;
+					ProductGroup = 12EF74C821046BD300A9B66B /* Products */;
+					ProjectRef = 12EF74C721046BD300A9B66B /* ReactNativeNavigation.xcodeproj */;
 				},
 				{
 					ProductGroup = 1255D1FC20C02AD700C70542 /* Products */;
@@ -1036,18 +1045,25 @@
 			remoteRef = 127B2DAF20C29CDC00D1B59D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		12D0F14320BF13F300CC8EC8 /* libReactNativeNavigation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReactNativeNavigation.a;
-			remoteRef = 12D0F14220BF13F300CC8EC8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		12D0F17D20BF351E00CC8EC8 /* libRNVectorIcons.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNVectorIcons.a;
 			remoteRef = 12D0F17C20BF351E00CC8EC8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		12EF74F521046BD300A9B66B /* libReactNativeNavigation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeNavigation.a;
+			remoteRef = 12EF74F421046BD300A9B66B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		12EF74F721046BD300A9B66B /* ReactNativeNavigationTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReactNativeNavigationTests.xctest;
+			remoteRef = 12EF74F621046BD300A9B66B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		139105C11AF99BAD00B5F7CC /* libRCTSettings.a */ = {
