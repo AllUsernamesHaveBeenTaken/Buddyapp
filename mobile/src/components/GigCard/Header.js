@@ -12,7 +12,9 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     paddingHorizontal: 10,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   userMetaWrapper: {
     flex: 1,
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   AvatarImg: {
-    ...makeCircle(45),
+    ...makeCircle(35),
   },
   userInfoWrapper: {
     justifyContent: 'center',

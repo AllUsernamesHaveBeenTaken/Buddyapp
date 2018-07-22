@@ -4,6 +4,7 @@ import { registerScreens } from './screens'
 import { iconsMap } from './utils/themes'
 import appInitialized from './utils/appInitialized'
 
+import { fakeAvatar } from "./utils/constants";
 
 registerScreens();
 
@@ -18,49 +19,104 @@ export function startLogin() {
     })
 }
 
+
+
 export function startMainApp() {
-    Navigation.startTabBasedApp({
-        appStyle: {
-            navBarTextColor: '#050505',
-            navBarTransparent: true,
-            navBarButtonColor:'#1B9AAA'
+    Navigation.setDefaultOptions({
+        topBar: {
+            visible: true,
+            searchBar: true,
+            noBorder: true,
+            buttonColor: '#1B9AAA',
+            title: {
+                text: 'Title',
+                fontSize: 20,
+                color: '050505',
+                transparent: true
+              }
         },
-        tabsStyle: {
-            tabBarSelectedButtonColor: '#1B9AAA',
-            tabBarButtonColor: '#050505',
-            tabBarTranslucent: true,           
+        bottomTabs: {
+            visible: true,
+            currentTabIndex: 0,
+            drawBehind: false,
+            translucent: true,
+            backgroundColor: 'white',
+            drawBehind: false
         },
-        tabs: [
-            {
-                screen: 'buddy.FeedScreen',
-                title: 'Buddy',
-                icon: iconsMap.list,
-                navigatorButtons: {
+        bottomTab: {
+            selectedIconColor: '#1B9AAA',
+            iconColor: '#050505',
+        }
+      });
+
+    Navigation.setRoot({
+        root: {
+          bottomTabs: {
+            children: [{
+              stack: {
+                children: [{
+                  component: {
+                    name: 'buddy.FeedScreen',
+                  }
+                }],
+                options: {
+                  bottomTab: {
+                    title: 'Buddy',
+                    icon: iconsMap.list,
+                    testID: 'FEEDSCREEN_TAB_BAR_BUTTON'
+                  },
+                  topBar: {
+                    leftButtons: [
+                      {
+                        title: 'Profile',
+                        id: 'profile',
+                        icon: iconsMap.user
+                      }
+                    ],
                     rightButtons: [
-                        {
-                            title: 'Noti',
-                            id: 'notifications',
-                            icon: iconsMap.bell
-                        }
-                    ]
+                      {
+                        title: 'Notifications',
+                        id: 'notifications',
+                        icon: iconsMap.bell
+                      }
+                    ],
+                  }
                 }
+              }
             },
             {
-                screen: 'buddy.ExploreScreen',
-                title: 'Buddy',
-                icon: iconsMap.globe,
-                navigatorButtons: {
-                    rightButtons: [
-                        {
-                            title: 'Noti',
-                            id: 'notifications',
-                            icon: iconsMap.bell
-                        }
-                    ]
-                }
-            },
-        ],
-    })
+                component: {
+                    name: 'buddy.ExploreScreen',
+                    options: {
+                      bottomTab: {
+                        title: 'Explore',
+                        icon: iconsMap.globe,
+                        testID: 'EXPLORESCREEN_TAB_BAR_BUTTON'
+                      },
+                      topBar: {
+                        leftButtons: [
+                          {
+                            title: 'Profile',
+                            id: 'profile',
+                            icon: iconsMap.user
+                          }
+                        ],
+                        rightButtons: [
+                            {
+                                title: 'Notifications',
+                                id: 'notifications',
+                                icon: iconsMap.bell
+                            }
+                        ],
+                      }
+                    }
+                  }
+            }],
+          }
+        }
+      });
+
+    
 }
 
 export function init() {
