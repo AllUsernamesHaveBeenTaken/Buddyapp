@@ -51,9 +51,9 @@ class GigCard extends Component {
 
     render() {
         return (
-            <View style={styles.root}>
+            <Touchable style={styles.root} feedback='opacity' onPress={this._onGoToDetail}>
                 <Header avatar={this.props.data.user.avatar} username={this.props.data.user.firstName + ' ' + this.props.data.user.lastName}/>
-                <Touchable feedback='highlight' onPress={this._onGoToDetail}>
+                
                     <Description 
                         title={this.props.data.title}
                         location={this.props.data.location}
@@ -61,8 +61,7 @@ class GigCard extends Component {
                         onLikedPress={this._onLikedPress}
                         isFavorited={this.props.data.isFavorited}
                     />
-                </Touchable>
-            </View>
+            </Touchable>
         );
     }
 }
