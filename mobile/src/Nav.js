@@ -9,14 +9,23 @@ import { fakeAvatar } from "./utils/constants";
 registerScreens();
 
 export function startLogin() {
-    Navigation.startSingleScreenApp({
-        screen: {
-            screen: 'buddy.LoginScreen',
-            navigatorStyle: {
-                navBarHidden: true
-            }
-        }
-    })
+  Navigation.setDefaultOptions({
+    topBar: {
+      visible: false,     
+    }
+  });
+
+  Navigation.setRoot({
+    root: {
+      stack: {
+        children: [{
+          component: {
+            name: 'buddy.LoginScreen',
+          }
+        }],
+      }
+    }
+  });
 }
 
 export function startMainApp() {
@@ -62,14 +71,14 @@ export function startMainApp() {
                       {
                         title: 'Profile',
                         id: 'profile',
-                        icon: iconsMap.user
+                        icon: iconsMap['user-o']
                       }
                     ],
                     rightButtons: [
                       {
                         title: 'Notifications',
                         id: 'notifications',
-                        icon: iconsMap.bell
+                        icon: iconsMap['bell-o']
                       }
                     ],
                   }
@@ -90,14 +99,14 @@ export function startMainApp() {
                           {
                             title: 'Profile',
                             id: 'profile',
-                            icon: iconsMap.user
+                            icon: iconsMap['user-o']
                           }
                         ],
                         rightButtons: [
                             {
                                 title: 'Notifications',
                                 id: 'notifications',
-                                icon: iconsMap.bell
+                                icon: iconsMap['bell-o']
                             }
                         ],
                       }

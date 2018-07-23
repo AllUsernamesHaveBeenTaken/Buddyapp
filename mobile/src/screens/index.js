@@ -5,6 +5,7 @@ import ExploreScreen from './ExploreScreen'
 import LoginScreen from './LoginScreen'
 import CreateGigScreen from './CreateGigScreen'
 import GigDetailScreen from './GigDetailScreen'
+import ProfileScreen from './ProfileScreen'
 
 import WithProvider from "../components/WithProvider";
 
@@ -14,4 +15,5 @@ export const registerScreens = () => {
     Navigation.registerComponent('buddy.LoginScreen', () => WithProvider(LoginScreen))
     Navigation.registerComponent('buddy.CreateGigScreen', () => WithProvider(CreateGigScreen))
     Navigation.registerComponent('buddy.GigDetailScreen', () => WithProvider(GigDetailScreen))
+    Navigation.registerComponent('buddy.ProfileScreen', () => WithProvider(ProfileScreen))
 }
