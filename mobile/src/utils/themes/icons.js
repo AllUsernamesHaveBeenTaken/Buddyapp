@@ -12,8 +12,9 @@ const icons = {
     list: [navIconSize, Entypo],
     globe: [navIconSize, Entypo],
     cross: [navIconSize, Entypo],
-    bell: [navIconSize, EvilIcons],
-    user: [navIconSize, FontAwesome]
+    'bell-o': [navIconSize, FontAwesome],
+    'user-o': [navIconSize, FontAwesome],
+    gears: [navIconSize, FontAwesome],
 }
 
 const iconsMap = {}
