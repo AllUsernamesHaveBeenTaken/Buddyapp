@@ -106,32 +106,32 @@ export default compose(
             onGoingGigMutation: () => mutate({
                 variables: {
                     gigId: ownProps.data.id
-                }
-            }),
-            update: (store, {
-                data: {
-                    goingGig
-                }
-            }) => {
-                const id = defaultDataIdFromObject({
-                    __typename: 'Gig',
-                    id: ownProps.data.id
-                })
-
-                const gig = store.readFragment({
-                    id,
-                    fragment: FeedGigFragment
-                })
-
-                store.writeFragment({
-                    id,
-                    fragment: FeedGigFragment,
+                },
+                update: (store, {
                     data: {
-                        ...gig,
-                        isGoing: goingGig
+                        goingGig
                     }
-                })
-            }
+                }) => {
+                    const id = defaultDataIdFromObject({
+                        __typename: 'Gig',
+                        id: ownProps.data.id
+                    })
+    
+                    const gig = store.readFragment({
+                        id,
+                        fragment: FeedGigFragment
+                    })
+    
+                    store.writeFragment({
+                        id,
+                        fragment: FeedGigFragment,
+                        data: {
+                            ...gig,
+                            isGoing: goingGig
+                        }
+                    })
+                }
+            })
         })
     })
 )(GigCard);
