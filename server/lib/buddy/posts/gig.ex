@@ -13,6 +13,7 @@ defmodule Buddy.Posts.Gig do
     belongs_to :user, Buddy.Accounts.User
 
     has_many :likes, Buddy.Reactions.LikeGig
+    has_many :goings, Buddy.Reactions.GoingGig
     has_many :comments, Buddy.Posts.Comment
 
     timestamps()

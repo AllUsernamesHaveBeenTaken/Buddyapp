@@ -5,6 +5,7 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Moment from "moment";
 
 import Heart from "./Heart";
+import Going from "./Going";
 
 const styles = StyleSheet.create({
   root: {
@@ -66,7 +67,9 @@ export default function Description({
   location = 'Saga, Deinze',
   date = new Date('01/01/2018'),
   onLikedPress,
-  isFavorited
+  onGoingPress,
+  isFavorited,
+  isGoing
 }){
   return (
     <View style={styles.root}>
@@ -86,6 +89,10 @@ export default function Description({
         <Heart 
           onLikedPress={onLikedPress} 
           isFavorited={isFavorited}
+        />
+        <Going 
+          onGoingPress={onGoingPress}
+          isGoing={isGoing}
         />  
       </View>                  
     </View>
