@@ -7,6 +7,7 @@ export const FeedGigFragment = gql`
     location
     when
     isFavorited,
+    isGoing,
     user {
       firstName,
       lastName,

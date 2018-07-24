@@ -68,7 +68,8 @@ export default function Description({
   date = new Date('01/01/2018'),
   onLikedPress,
   onGoingPress,
-  isFavorited
+  isFavorited,
+  isGoing
 }){
   return (
     <View style={styles.root}>
@@ -91,6 +92,7 @@ export default function Description({
         />
         <Going 
           onGoingPress={onGoingPress}
+          isGoing={isGoing}
         />  
       </View>                  
     </View>

@@ -43,6 +43,16 @@ defmodule Buddy.Reactions do
     end
   end
 
+  def is_going_to_gig(gig_id, user_id) do
+    result = gig_going_exist(gig_id, user_id)
+
+    if result == nil do
+      {:ok, false}    
+    else
+      {:ok, true}
+    end
+  end
+
   @doc """
   Returns the list of like_gigs.
 
@@ -247,4 +257,5 @@ defmodule Buddy.Reactions do
       
       Repo.one(query)
   end
+  
 end

@@ -16,6 +16,9 @@ defmodule BuddyWeb.Schema.PostsTypes do
         field :is_favorited, non_null(:boolean) do
             resolve &Resolvers.Reactions.gig_is_liked/3
         end
+        field :is_going, non_null(:boolean) do
+            resolve &Resolvers.Reactions.is_going_to_gig/3
+        end
 
         field :inserted_at, non_null(:string)
         field :updated_at, non_null(:string)

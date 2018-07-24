@@ -22,12 +22,12 @@ const styles = StyleSheet.create({
 })
 
 export default function Going({
-  isFavorited,
+  isGoing,
   onGoingPress
 }){
 
   _isLiked = () => {
-    if (isFavorited) {
+    if (isGoing) {
       return <Ionicons name="md-checkmark" size={25} style={[styles.button, {color: '#00f966'}]} />
     } else { 
       return <Ionicons name="md-checkmark" size={25} style={styles.button}/>

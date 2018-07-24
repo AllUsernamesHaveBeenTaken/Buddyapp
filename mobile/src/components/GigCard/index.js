@@ -60,6 +60,7 @@ class GigCard extends Component {
                         onLikedPress={this._onLikedPress}
                         onGoingPress={this._onGoingPress}
                         isFavorited={this.props.data.isFavorited}
+                        isGoing={this.props.data.isGoing}
                     />
             </Touchable>
         );
@@ -106,7 +107,31 @@ export default compose(
                 variables: {
                     gigId: ownProps.data.id
                 }
-            })
+            }),
+            update: (store, {
+                data: {
+                    goingGig
+                }
+            }) => {
+                const id = defaultDataIdFromObject({
+                    __typename: 'Gig',
+                    id: ownProps.data.id
+                })
+
+                const gig = store.readFragment({
+                    id,
+                    fragment: FeedGigFragment
+                })
+
+                store.writeFragment({
+                    id,
+                    fragment: FeedGigFragment,
+                    data: {
+                        ...gig,
+                        isGoing: goingGig
+                    }
+                })
+            }
         })
     })
 )(GigCard);
