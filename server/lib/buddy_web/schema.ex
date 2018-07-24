@@ -60,5 +60,12 @@ defmodule BuddyWeb.Schema do
             middleware Middleware.Authorize
             resolve &Resolvers.Posts.create_comment/3   
         end
+
+        @desc "Going or not to a gig"
+        field :going_gig, :boolean do
+            arg :gig_id, non_null(:id)
+            middleware Middleware.Authorize
+            resolve &Resolvers.Reactions.going_gig/3
+        end
     end
 end
