@@ -4,6 +4,7 @@ import Touchable from "@appandflow/touchable";
 import { human, systemWeights } from "react-native-typography";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 import { iconsMap } from '../../utils/themes'
 import { createGigMutation } from "../../graphql/mutations";
@@ -83,7 +84,13 @@ class CreateGigScreen extends PureComponent {
       title: '',
       location: '',
       when: '',
-      loading: false
+      year: '',
+      month: '',
+      day: '',
+      hours: '',
+      minutes: '',
+      loading: false,
+      isDateTimePickerVisible: false
     }
     props.navigator.setOnNavigatorEvent(this._onBackButtonPress.bind(this))
   }
@@ -120,8 +127,26 @@ class CreateGigScreen extends PureComponent {
   }
 
   _onTitleChange = title => this.setState({title})
+
   _onLocationChange = location => this.setState({location})
-  _onWhenChange = when => this.setState({when})
+
+  _onWhenChange = when => this.setState({
+    when: when.toISOString(),
+    year: when.getFullYear(),
+    month: when.getMonth() + 1,
+    day: when.getDate(),
+    hours: when.getHours(),
+    minutes: when.getMinutes()
+  })
+
+  _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+
+  _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+
+  _handleDatePicked = (date) => {
+    this._onWhenChange(date)
+    this._hideDateTimePicker();
+  }
 
   componentWillMount() {
     this.props.navigator.setButtons({
@@ -166,14 +191,24 @@ class CreateGigScreen extends PureComponent {
             />
           </View>
           <View style={styles.inputWrapper}>
-            <TextInput 
+            {/* <TextInput 
               value={this.state.when} 
               undelineColorAndroid='transparent' 
               style={styles.input} 
               placeholder='When?'
               onChangeText={this._onWhenChange}
-            />
+            /> */}
+            <Touchable onPress={this._showDateTimePicker} feedback='opacity' >
+              <Text style={styles.cancelBtnText}>{this.state.when ? this.state.year +'-' + this.state.month + '-' + this.state.day + ' ' + this.state.hours + ':' + this.state.minutes: 'When?'}</Text>
+            </Touchable>
           </View>
+          <DateTimePicker
+          isVisible={this.state.isDateTimePickerVisible}
+          onConfirm={this._handleDatePicked}
+          onCancel={this._hideDateTimePicker}
+          mode={'datetime'}
+          is24Hour={true}
+        />
         </View>
         <View style={styles.sectionBtn} >
           <Touchable onPress={this._onCancelPress} style={styles.btnCancel} feedback='opacity'>
