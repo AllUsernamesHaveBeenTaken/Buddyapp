@@ -7,4 +7,11 @@ defmodule BuddyWeb.Resolvers.Accounts do
         {:ok, %{token: token}}
     end
   end
+
+  def befriend(_, %{friend_id: friend_id}, %{context: %{current_user: current_user}}) do
+    with {:ok, message} <- Buddy.Accounts.befriend(friend_id, current_user.id) do
+      {:ok, message}
+    end
+  end
+
 end

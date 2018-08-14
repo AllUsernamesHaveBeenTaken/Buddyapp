@@ -67,5 +67,12 @@ defmodule BuddyWeb.Schema do
             middleware Middleware.Authorize
             resolve &Resolvers.Reactions.going_gig/3
         end
+
+        @desc "Befriend or Defriend"
+        field :friend, :boolean do
+            arg :friend_id, non_null(:id)
+            middleware Middleware.Authorize
+            resolve &Resolvers.Accounts.befriend/3
+        end
     end
 end
