@@ -2,13 +2,14 @@ import React, { PureComponent } from 'react';
 import { StyleSheet, View, Text, TextInput, ActivityIndicator} from 'react-native';
 import Touchable from "@appandflow/touchable";
 import { human, systemWeights } from "react-native-typography";
-import { graphql } from "react-apollo";
+import { compose, graphql } from "react-apollo";
 import gql from "graphql-tag";
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
 import { iconsMap } from '../../utils/themes'
 import { createGigMutation } from "../../graphql/mutations";
-import { FeedGigFragment } from "../../screens/FeedScreen/fragments";
+import { FeedGigFragment, FeedFriendsFragment } from "../../screens/FeedScreen/fragments";
+import { FriendInvitationList } from "../../components/Friends";
 
 const styles = StyleSheet.create({
   root: {
@@ -39,7 +40,6 @@ const styles = StyleSheet.create({
   sectionBtn: {
     flex: 1,
     flexDirection: 'row',
-    marginHorizontal: 10,
   },
   btnSubmit: {
     height: 20,
@@ -74,6 +74,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  friendsWrapper: {
+    width: '95%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#1B9AAA60',
+    paddingRight: 10,
+    paddingLeft: 10,
+    marginBottom: 10
   }
 })
 
@@ -191,33 +201,30 @@ class CreateGigScreen extends PureComponent {
             />
           </View>
           <View style={styles.inputWrapper}>
-            {/* <TextInput 
-              value={this.state.when} 
-              undelineColorAndroid='transparent' 
-              style={styles.input} 
-              placeholder='When?'
-              onChangeText={this._onWhenChange}
-            /> */}
             <Touchable onPress={this._showDateTimePicker} feedback='opacity' >
               <Text style={styles.cancelBtnText}>{this.state.when ? this.state.year +'-' + this.state.month + '-' + this.state.day + ' ' + this.state.hours + ':' + this.state.minutes: 'When?'}</Text>
             </Touchable>
+            <DateTimePicker
+              isVisible={this.state.isDateTimePickerVisible}
+              onConfirm={this._handleDatePicked}
+              onCancel={this._hideDateTimePicker}
+              mode={'datetime'}
+              is24Hour={true}
+            />
           </View>
-          <DateTimePicker
-          isVisible={this.state.isDateTimePickerVisible}
-          onConfirm={this._handleDatePicked}
-          onCancel={this._hideDateTimePicker}
-          mode={'datetime'}
-          is24Hour={true}
-        />
+          <View style={styles.friendsWrapper} >
+            <FriendInvitationList data={this.props.data.getFriends}/>          
+          </View> 
+          <View style={styles.sectionBtn} >
+            <Touchable onPress={this._onCancelPress} style={styles.btnCancel} feedback='opacity'>
+              <Text style={styles.cancelBtnText} >Cancel</Text>
+            </Touchable>
+            <Touchable onPress={this._onSubmitPress} style={styles.btnSubmit} feedback='opacity'>
+              <Text style={styles.submitBtnText} >Submit</Text>
+            </Touchable>
+          </View>
         </View>
-        <View style={styles.sectionBtn} >
-          <Touchable onPress={this._onCancelPress} style={styles.btnCancel} feedback='opacity'>
-            <Text style={styles.cancelBtnText} >Cancel</Text>
-          </Touchable>
-          <Touchable onPress={this._onSubmitPress} style={styles.btnSubmit} feedback='opacity'>
-            <Text style={styles.submitBtnText} >Submit</Text>
-          </Touchable>
-        </View>
+        
       </View>
     );
   }
@@ -232,20 +239,34 @@ const getGigs = gql`
   ${FeedGigFragment}
 `
 
-export default graphql(createGigMutation, {
-  props: ({mutate}) => ({
-    onCreateGig: variables =>
-      mutate({
-        variables,
-        update: (store, {data: { createGig }}) => {
-          const query = store.readQuery({ query: getGigs})
-          store.writeData({
-            query: getGigs,
-            data: {
-              friendsGigs: [createGig, ...query.friendsGigs]
-            }
-          })
-        }
-      })
+const friends = gql`
+  query {
+    getFriends{
+      firstName,
+      lastName,
+      id,
+      avatar
+    }
+  }
+`
+
+export default compose(
+  graphql(friends),
+  graphql(createGigMutation, {
+    props: ({mutate}) => ({
+      onCreateGig: variables =>
+        mutate({
+          variables,
+          update: (store, {data: { createGig }}) => {
+            const query = store.readQuery({ query: getGigs})
+            store.writeData({
+              query: getGigs,
+              data: {
+                friendsGigs: [createGig, ...query.friendsGigs]
+              }
+            })
+          }
+        })
+    })
   })
-})(CreateGigScreen);
+)(CreateGigScreen);
