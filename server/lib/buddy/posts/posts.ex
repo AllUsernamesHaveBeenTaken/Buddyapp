@@ -7,6 +7,7 @@ defmodule Buddy.Posts do
   alias Buddy.Repo
 
   alias Buddy.Posts.Gig
+  alias Buddy.Accounts.Friend
 
   @doc """
   Returns the list of gigs.
@@ -102,6 +103,16 @@ defmodule Buddy.Posts do
   """
   def change_gig(%Gig{} = gig) do
     Gig.changeset(gig, %{})
+  end
+
+  def list_gigs_friends(user_id) do
+    query = from f1 in Friend,
+            join: f2 in Friend, on: f1.friend_id == f2.user_id,
+            join: g in Gig, on: g.user_id in [f1.user_id, f2.friend_id],
+            where: f1.friend_id == ^user_id and f2.friend_id != ^user_id,
+            order_by: [desc: :inserted_at],
+            select: g
+    Repo.all(query)
   end
 
   alias Buddy.Posts.Comment
@@ -206,4 +217,5 @@ defmodule Buddy.Posts do
             order_by: [desc: :inserted_at]
     Repo.all(query)
   end
+
 end

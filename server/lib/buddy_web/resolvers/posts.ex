@@ -6,6 +6,10 @@ defmodule BuddyWeb.Resolvers.Posts do
         {:ok, Posts.list_gigs}
     end
 
+    def friends_gigs(_, _, %{context: %{current_user: current_user}}) do
+        {:ok, Posts.list_gigs_friends(current_user.id)}
+    end
+
     def gig(_, %{id: id}, _) do
         {:ok, Posts.get_gig!(id)}
     end

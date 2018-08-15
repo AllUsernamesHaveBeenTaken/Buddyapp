@@ -13,5 +13,4 @@ defmodule BuddyWeb.Resolvers.Accounts do
       {:ok, message}
     end
   end
-
 end

@@ -14,6 +14,12 @@ defmodule BuddyWeb.Schema do
             resolve &Resolvers.Posts.gigs/3
         end
 
+        @desc "Get list of gigs from friends"
+        field :friends_gigs, list_of(:gig) do
+        middleware Middleware.Authorize
+            resolve &Resolvers.Posts.friends_gigs/3
+        end
+
         @desc "Get a single gig by id"
         field :gig , :gig do
         middleware Middleware.Authorize        
