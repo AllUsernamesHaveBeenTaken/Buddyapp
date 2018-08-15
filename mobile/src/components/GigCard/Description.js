@@ -78,7 +78,7 @@ export default function Description({
       <Text style={styles.date}>{Moment(date).format('MMM')}</Text>        
       </View>
       <View style={styles.contentRight}>
-        <Text style={styles.time}>{time}</Text>
+        <Text style={styles.time}>{Moment(date).format('H:MM a')}</Text>
         <Text style={styles.title}>{title}</Text>
         <View style={styles.locationWrapper}>
           <SimpleLineIcons style={styles.locationIcon} name="location-pin" size={20}/>        

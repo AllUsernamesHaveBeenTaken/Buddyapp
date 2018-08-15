@@ -170,7 +170,7 @@ class GigDetailScreen extends PureComponent {
         </Query>
         <KeyboardAvoidingView behavior='padding' enabled style={styles.avoidingView} keyboardVerticalOffset={INPUT_HEIGHT + 30}>
           <View style={styles.inputSection}>
-              <Image source={{uri: fakeAvatar}} style={styles.avatar}/>
+              <Image source={{uri: 'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2169021279780281&height=50&width=50&ext=1536929495&hash=AeRpT1YIc_RylT8A'}} style={styles.avatar}/>
               <View style={styles.inputWrapper}>
                 <TextInput 
                   style={styles.input}
