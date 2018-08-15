@@ -11,7 +11,8 @@ export const FeedGigFragment = gql`
     user {
       firstName,
       lastName,
-      avatar
+      avatar,
+      id
     }
   }
 `

@@ -72,7 +72,7 @@ class FeedScreen extends Component {
     return (
       <View>
         <FlatList 
-          data={this.props.data.gigs}
+          data={this.props.data.friendsGigs}
           keyExtractor={this._keyExtractor}
           renderItem={this._renderItem}
           refreshControl={
@@ -90,7 +90,7 @@ class FeedScreen extends Component {
 
 const getGigs = gql`
   query {
-    gigs {
+    friendsGigs {
       ...feedGig
     }
   }
