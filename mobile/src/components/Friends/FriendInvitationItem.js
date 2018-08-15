@@ -71,7 +71,15 @@ class FriendInvitationList extends PureComponent {
     }
   }
   
-  _onInvitePress = () => this.setState({isInvited: !this.state.isInvited})
+  _onInvitePress = () => {
+    this.props.addInvitee(this.props.userId)    
+    this.setState({isInvited: true})
+  }
+
+  _onInvitedPress = () => {
+    this.props.removeInvitee(this.props.userId)    
+    this.setState({isInvited: false})
+  }
 
   isInvitedBtn = () => {
     if (!this.state.isInvited) {
@@ -82,7 +90,7 @@ class FriendInvitationList extends PureComponent {
         )
     } else {
       return (
-        <Touchable onPress={this._onInvitePress} style={styles.btnInvited} feedback='opacity'>
+        <Touchable onPress={this._onInvitedPress} style={styles.btnInvited} feedback='opacity'>
           <Text style={styles.invitedBtnText}>Invited</Text>
         </Touchable>
       ) 

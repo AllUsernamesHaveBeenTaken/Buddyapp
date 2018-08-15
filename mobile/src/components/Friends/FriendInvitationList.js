@@ -13,12 +13,11 @@ const styles = StyleSheet.create({
   }
 })
 
-_renderItem = ({item}) => <FriendInvitationItem username={item.firstName + ' ' + item.lastName} avatar={item.avatar} userId={item.id}/>
-
 class FriendInvitationList extends PureComponent {
-  state = {  }
-
   render() {
+
+    _renderItem = ({item}) => <FriendInvitationItem removeInvitee={this.props.removeInvitee} addInvitee={this.props.addInvitee} username={item.firstName + ' ' + item.lastName} avatar={item.avatar} userId={item.id}/>
+    
     //const { user, insertedAt, text} = this.props
     return (
       <View style={styles.root}>

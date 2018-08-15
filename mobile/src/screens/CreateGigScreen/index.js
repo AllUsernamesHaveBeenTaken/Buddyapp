@@ -100,7 +100,8 @@ class CreateGigScreen extends PureComponent {
       hours: '',
       minutes: '',
       loading: false,
-      isDateTimePickerVisible: false
+      isDateTimePickerVisible: false,
+      invitees: []
     }
     props.navigator.setOnNavigatorEvent(this._onBackButtonPress.bind(this))
   }
@@ -114,6 +115,11 @@ class CreateGigScreen extends PureComponent {
       }
     }
   }
+
+  _addInvitee = (userId) => {
+    this.setState({invitees: [...this.state.invitees, userId]})
+  }
+  _removeInvitee = (userId) => this.setState({invitees: this.state.invitees.filter(e => e !== userId)})  
 
   _onCancelPress = () => {
     this.props.navigator.dismissModal({
@@ -213,7 +219,7 @@ class CreateGigScreen extends PureComponent {
             />
           </View>
           <View style={styles.friendsWrapper} >
-            <FriendInvitationList data={this.props.data.getFriends}/>          
+            <FriendInvitationList data={this.props.data.getFriends} removeInvitee={this._removeInvitee} addInvitee={this._addInvitee}/>          
           </View> 
           <View style={styles.sectionBtn} >
             <Touchable onPress={this._onCancelPress} style={styles.btnCancel} feedback='opacity'>
