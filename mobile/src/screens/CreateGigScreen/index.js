@@ -225,7 +225,7 @@ class CreateGigScreen extends PureComponent {
 
 const getGigs = gql`
   query {
-    gigs {
+    friendsGigs {
       ...feedGig
     }
   }
@@ -242,7 +242,7 @@ export default graphql(createGigMutation, {
           store.writeData({
             query: getGigs,
             data: {
-              gigs: [createGig, ...query.gigs]
+              friendsGigs: [createGig, ...query.friendsGigs]
             }
           })
         }

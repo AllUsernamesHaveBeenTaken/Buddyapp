@@ -108,9 +108,10 @@ defmodule Buddy.Posts do
   def list_gigs_friends(user_id) do
     query = from f1 in Friend,
             join: f2 in Friend, on: f1.friend_id == f2.user_id,
-            join: g in Gig, on: g.user_id in [f2.user_id, f1.friend_id],
-            where: f2.friend_id == ^user_id and f1.friend_id != ^user_id,
-            order_by: [desc: :inserted_at],
+            join: g in Gig, on: g.user_id in [f1.user_id, f2.user_id],
+            where: f1.user_id == ^user_id and f1.friend_id != ^user_id,            
+            group_by: g.id,
+            order_by: [asc: g.when],
             select: g
     Repo.all(query)
   end
