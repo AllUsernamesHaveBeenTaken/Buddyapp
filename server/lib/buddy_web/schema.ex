@@ -33,6 +33,12 @@ defmodule BuddyWeb.Schema do
             middleware Middleware.Authorize
             resolve &Resolvers.Posts.get_comments/3            
         end
+
+        @desc "Get all friends"
+        field :get_friends, list_of(:user) do
+            middleware Middleware.Authorize
+            resolve &Resolvers.Accounts.get_friends/3
+        end
     end
 
     mutation do

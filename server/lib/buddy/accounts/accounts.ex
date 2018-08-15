@@ -227,4 +227,13 @@ defmodule Buddy.Accounts do
       {:ok, false}
     end
   end
+
+  def get_friends(user_id) do
+    query = from f in Friend,
+            join: u in User, on: f.friend_id == u.id,
+            where: f.friend_id != ^user_id,
+            select: u
+            
+    Repo.all(query)
+  end
 end

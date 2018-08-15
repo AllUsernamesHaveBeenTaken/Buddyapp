@@ -13,4 +13,8 @@ defmodule BuddyWeb.Resolvers.Accounts do
       {:ok, message}
     end
   end
+
+  def get_friends(_, _, %{context: %{current_user: current_user}}) do
+    {:ok, Buddy.Accounts.get_friends(current_user.id)}
+  end
 end
